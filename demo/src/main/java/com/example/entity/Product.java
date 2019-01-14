@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table(name="Product")
@@ -20,6 +21,7 @@ public class Product {
 	
 	@Column(name="P_DESCRIPTION")
 	private String description;
+	
 	
 	public Product() {
 		

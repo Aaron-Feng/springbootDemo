@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,10 +21,6 @@ public class ProductController {
 		this.productService=productService;
 	}
 	
-	@RequestMapping("/")
-	public String redirToList() {
-		return "redirect:/product/productList";
-	}
 	
 	@RequestMapping("/product/productList")
 	public String listProducts(Model model){
@@ -36,6 +33,7 @@ public class ProductController {
 		model.addAttribute("product",productService.getById(Integer.valueOf(id)));
 		return "product/productShow";
 	}
+	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping("/product/new")
 	public String newProduct(Model model) {
 		model.addAttribute("product",new Product());
@@ -47,6 +45,7 @@ public class ProductController {
 		Product savedProduct = productService.saveOrUpdate(product);
 		return "redirect:/product/productList";
 	}
+	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping("/product/editProduct/{id}")
 	public String editProduct(@PathVariable String id, Model model) {
 		Product product = productService.getById(Integer.valueOf(id));
@@ -54,6 +53,7 @@ public class ProductController {
 		model.addAttribute("product",product);
 		return "product/productForm";
 	}
+	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping("/product/deleteProduct/{id}")
 	public String deleteProduct(@PathVariable String id) {
 		productService.delete(Integer.valueOf(id));

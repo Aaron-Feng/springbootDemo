@@ -3,8 +3,8 @@ package com.example.repo;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.entity.Product;
+import com.example.entity.Order;
 @Repository
-public interface ProductRepository extends CrudRepository<Product, Integer> {
+public interface OrderRepository extends CrudRepository<Order, Integer>{
 
 }

@@ -1,8 +1,16 @@
 package com.example.entity;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -21,8 +29,17 @@ public class Product {
 	
 	@Column(name="P_DESCRIPTION")
 	private String description;
+
+	@ManyToMany(mappedBy = "products")
+    private List<Order> orders = new ArrayList<>();
 	
-	
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
 	public Product() {
 		
 	}

@@ -42,13 +42,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception{
 		http.csrf().disable()
 				.authorizeRequests()
-				.antMatchers("/product/**").authenticated()
+				.antMatchers("/product/**","/shop/**").authenticated()
 				.anyRequest().permitAll()
 				.and()
 				.formLogin().loginPage("/login").permitAll()
 				.failureUrl("/login?error=true")
 				.defaultSuccessUrl("/welcome")
-				.and().logout()
+				.and()
+				.logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/").and().exceptionHandling()
                 .accessDeniedPage("/access-denied");

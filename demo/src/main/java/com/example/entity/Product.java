@@ -1,5 +1,6 @@
 package com.example.entity;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -25,7 +26,7 @@ public class Product {
 	private String name;
 	
 	@Column(name="P_PRICE")
-	private double price;
+	private BigDecimal price;
 	
 	@Column(name="P_DESCRIPTION")
 	private String description;
@@ -44,7 +45,7 @@ public class Product {
 		
 	}
 
-	public Product(String name, double price, String description) {
+	public Product(String name, BigDecimal price, String description) {
 		super();
 		this.name = name;
 		this.price = price;
@@ -67,11 +68,11 @@ public class Product {
 		this.name = name;
 	}
 
-	public double getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 

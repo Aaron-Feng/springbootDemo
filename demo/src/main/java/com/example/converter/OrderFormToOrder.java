@@ -1,5 +1,6 @@
 package com.example.converter;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -19,12 +20,12 @@ public class OrderFormToOrder implements Converter<ShopForm, Order>{
 	@Override
 	public Order convert(ShopForm shopForm) {
 		Order order = new Order();
-		double totalPrice=0;
+		BigDecimal totalPrice=new BigDecimal(0);
 		Set<Integer> selectedIds=shopForm.getSelectedProductsId();
 		ArrayList<Product> products= (ArrayList<Product>) productRepository.findAllById(selectedIds);
 		order.setProducts(products);
 		for(Product product : products) {
-			totalPrice+=product.getPrice();
+			totalPrice=product.getPrice().add(totalPrice);
 		}
 		order.setPrice(totalPrice);
 		return order;

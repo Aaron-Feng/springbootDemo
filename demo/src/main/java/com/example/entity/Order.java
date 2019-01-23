@@ -1,5 +1,6 @@
 package com.example.entity;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -35,7 +36,7 @@ private int id;
 private User user;
 
 @Column(name="total_PRICE")
-private double price;
+private BigDecimal price;
 @ManyToMany(fetch = FetchType.LAZY,
 cascade = {
     CascadeType.PERSIST,
@@ -77,11 +78,11 @@ public void setUser(User user) {
 	this.user = user;
 }
 
-public double getPrice() {
+public BigDecimal getPrice() {
 	return price;
 }
 
-public void setPrice(double price) {
+public void setPrice(BigDecimal price) {
 	this.price = price;
 }
 
